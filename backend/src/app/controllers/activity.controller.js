@@ -1,5 +1,6 @@
 const db = require("../models");
 const Questions = db.activity;
+const axios = require('axios');
 
 exports.questions = (req, res) => {
   Questions.findAll({
@@ -8,44 +9,37 @@ exports.questions = (req, res) => {
     }
   })
     .then(qs => {
-      if (qs && qs.length > 0) { 
+      if (qs && qs.length > 0) {
         const qNames = qs.map((q) => {
-            return {
-                qid: q.dataValues.urltitle,
-                title: q.dataValues.fulltitle
-            }
+          return {
+            qid: q.dataValues.urltitle,
+            title: q.dataValues.fulltitle
+          }
         })
-        
-        return res.status(200).send({ success: true, questions: qNames});
+
+        return res.status(200).send({success: true, questions: qNames});
       } else {
-        res.status(404).send({ success: false, questions: []});
-      } 
+        res.status(404).send({success: false, questions: []});
+      }
     })
     .catch(err => {
-      res.status(500).send({ message: err.message });
+      res.status(500).send({message: err.message});
     });
 };
 
 exports.question = (req, res) => {
-    Questions.findOne({
-      where: {
-        urltitle: req.body.urltitle
-      }
-    })
-      .then(q => {
-        if (q) { 
-          const qData = {
-            urltitle: q.dataValues.urltitle,
-            fulltitle: q.dataValues.fulltitle,
-            qtext: q.dataValues.qtext,
-            answers: JSON.parse(q.dataValues.metadata)
-          }
-          return res.status(200).send({ success: true, question: qData });
-        } else {
-          res.status(404).send({ success: false, message: "no question found"});
-        } 
-      })
-      .catch(err => {
-        res.status(500).send({ success: false, message: err.message });
+  var url = 'http://awp_mongo1:5000/questions/' + req.body.urltitle;
+  axios.get(url)
+    .then(function (response) {
+      return res.status(200).send({
+        success: true,
+        question: response.data.data
       });
-  };
+    })
+    .catch(err => {
+      res.status(404).send({
+        success: false,
+        message: "mongodb server error"
+      });
+    });
+};

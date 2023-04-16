@@ -6,7 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get install sudo curl postgresql postgresql-contrib systemctl -y
+RUN apt-get install sudo vim curl postgresql postgresql-contrib systemctl -y
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install nodejs wget
 

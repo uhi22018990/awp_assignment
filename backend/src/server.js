@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+var bcrypt = require("bcryptjs");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // database
 const db = require("./app/models");
 const Role = db.role;
+const User = db.user;
 const Questions = db.activity
 
 // db.sequelize.sync();
@@ -61,6 +63,12 @@ function initial() {
   Role.create({
     id: 3,
     name: "admin"
+  });
+
+  User.create({
+    username: "a@a.com",
+    email: "a@a.com",
+    password: bcrypt.hashSync("a@a.com", 8)
   });
 
   Questions.create({
