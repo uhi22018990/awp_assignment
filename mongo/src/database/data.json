@@ -1,0 +1,29 @@
+[
+  {
+    "urltitle": "bin_search",
+    "answers": [
+      {"text": "Yes", "correct": true},
+      {"text": "No", "correct": false},
+      {"text": "Maybe", "correct": false},
+      {"text": "All of the above", "correct": false}
+    ]
+  },
+  {
+    "urltitle": "avl_trees",
+    "answers": [
+      {"text": "Yes", "correct": true},
+      {"text": "No", "correct": false},
+      {"text": "Maybe", "correct": false},
+      {"text": "All of the above", "correct": false}
+    ]
+  },
+  {
+    "urltitle": "java_types",
+    "answers": [
+      {"text": "Yes", "correct": true},
+      {"text": "No", "correct": false},
+      {"text": "Maybe", "correct": false},
+      {"text": "All of the above", "correct": false}
+    ]
+  }
+]
