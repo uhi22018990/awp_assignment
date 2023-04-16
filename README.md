@@ -43,3 +43,26 @@ DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany
 }
 ```
 
+
+
+```
+MongooseError: Model.find() no longer accepts a callback
+    at Function.find (...mongo/src/node_modules/mongoose/lib/model.js:2041:11)
+    at ...mongo/src/server.js:33:11
+    at Layer.handle [as handle_request] (...mongo/src/node_modules/express/lib/router/layer.js:95:5)
+    at next (...mongo/src/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (...mongo/src/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (...mongo/src/node_modules/express/lib/router/layer.js:95:5)
+```
+
+
+```
+MongooseError: Operation `answers_schemas.findOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (/home/andrea/uhi/course/UI111014_awp/assignment/assignment/awp_assignment/mongo/src/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:185:23)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)
+/home/andrea/uhi/course/UI111014_awp/assignment/assignment/awp_assignment/mongo/src/node_modules/mongoose/lib/connection.js:755
+    err = new ServerSelectionError();
+          ^
+
+```
