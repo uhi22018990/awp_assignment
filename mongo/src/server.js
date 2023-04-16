@@ -10,7 +10,7 @@ var corsOptions = {
 
 /* mongodb connection */
 console.log("Connecting mongodb....");
-mongoose.connect('mongodb://127.0.0.1:27017/answers')
+mongoose.connect('mongodb://127.0.0.1:27017/questions')
   .then(() => {
     console.log("ok");
   })
@@ -21,8 +21,8 @@ console.log("mongodb readyState....");
 console.log(mongoose.connection.readyState);
 
 /* mongoose model */
-var answers = mongoose.model(
-  'answers',
+var questions = mongoose.model(
+  'questions',
   new mongoose.Schema({any: {}}, {strict: false})
   );
 
@@ -38,9 +38,9 @@ app.get("/", (req, res) => {
   res.json({message: "Welcome to the app"});
 });
 
-/* API answers route */
-app.get("/answers/:urltitle", (req, res) => {
-  answers.findOne({urltitle: req.params.urltitle})
+/* API questions route */
+app.get("/questions/:urltitle", (req, res) => {
+  questions.findOne({urltitle: req.params.urltitle})
     .then((result) => {
       res.json({
         success: true,

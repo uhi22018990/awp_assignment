@@ -1,29 +1,48 @@
 [
-  {
+    {
+    "id": 1,
+    "qtype": "q",
     "urltitle": "bin_search",
-    "answers": [
-      {"text": "Yes", "correct": true},
-      {"text": "No", "correct": false},
-      {"text": "Maybe", "correct": false},
-      {"text": "All of the above", "correct": false}
-    ]
+    "fulltitle": "Binary Search",
+    "qtext": "This is some question text about binary search, isn't it?",
+    "metadata":
+      {"answers": [
+        {"text": "Yes", "correct": true},
+        {"text": "No", "correct": false},
+        {"text": "Maybe", "correct": false},
+        {"text": "All of the above", "correct": false}
+      ]
+    }
   },
+
   {
+    "id": 2,
+    "qtype": "q",
     "urltitle": "avl_trees",
-    "answers": [
-      {"text": "Yes", "correct": true},
-      {"text": "No", "correct": false},
-      {"text": "Maybe", "correct": false},
-      {"text": "All of the above", "correct": false}
-    ]
+    "fulltitle": "AVL Trees",
+    "qtext": "This is some question text about AVL Trees, isn't it?",
+    "metadata":
+      {"answers": [
+        {"text": "Yes", "correct": true},
+        {"text": "No", "correct": false},
+        {"text": "Maybe", "correct": false},
+        {"text": "All of the above", "correct": false}
+      ]
+    }
   },
   {
+    "id": 3,
+    "qtype": "q",
     "urltitle": "java_types",
-    "answers": [
-      {"text": "Yes", "correct": true},
-      {"text": "No", "correct": false},
-      {"text": "Maybe", "correct": false},
-      {"text": "All of the above", "correct": false}
-    ]
+    "fulltitle": "Java Types",
+    "qtext": "This is some question text about Java types, isn't it?",
+    "metadata":
+      {"answers": [
+        {"text": "Yes", "correct": true},
+        {"text": "No", "correct": false},
+        {"text": "Maybe", "correct": false},
+        {"text": "All of the above", "correct": false}
+      ]
+    }
   }
 ]

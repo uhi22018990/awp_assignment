@@ -6,38 +6,57 @@ systemctl start mongod
 # drop and reimport data
 mongosh \
   --quiet \
-  --eval 'use answers' \
-  --eval 'db.answers.drop()' \
-  --eval 'use answers' \
-  --eval 'db.answers.insertMany([
+  --eval 'use questions' \
+  --eval 'db.questions.drop()' \
+  --eval 'use questions' \
+  --eval 'db.questions.insertMany([
       {
-        "urltitle": "bin_search",
-        "answers": [
-          {"text": "Yes", "correct": true},
-          {"text": "No", "correct": false},
-          {"text": "Maybe", "correct": false},
-          {"text": "All of the above", "correct": false}
-        ]
-      },
-      {
-        "urltitle": "avl_trees",
-        "answers": [
-          {"text": "Yes", "correct": true},
-          {"text": "No", "correct": false},
-          {"text": "Maybe", "correct": false},
-          {"text": "All of the above", "correct": false}
-        ]
-      },
-      {
-        "urltitle": "java_types",
-        "answers": [
+      "id": 1,
+      "qtype": "q",
+      "urltitle": "bin_search",
+      "fulltitle": "Binary Search",
+      "qtext": "This is some question text about binary search, isn t it?",
+      "metadata":
+        {"answers": [
           {"text": "Yes", "correct": true},
           {"text": "No", "correct": false},
           {"text": "Maybe", "correct": false},
           {"text": "All of the above", "correct": false}
         ]
       }
-    ])' \
+    },
+
+    {
+      "id": 2,
+      "qtype": "q",
+      "urltitle": "avl_trees",
+      "fulltitle": "AVL Trees",
+      "qtext": "This is some question text about AVL Trees, isn t it?",
+      "metadata":
+        {"answers": [
+          {"text": "Yes", "correct": true},
+          {"text": "No", "correct": false},
+          {"text": "Maybe", "correct": false},
+          {"text": "All of the above", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "qtype": "q",
+      "urltitle": "java_types",
+      "fulltitle": "Java Types",
+      "qtext": "This is some question text about Java types, isn t it?",
+      "metadata":
+        {"answers": [
+          {"text": "Yes", "correct": true},
+          {"text": "No", "correct": false},
+          {"text": "Maybe", "correct": false},
+          {"text": "All of the above", "correct": false}
+        ]
+      }
+    }
+  ])' \
   mongodb://localhost/
 
 # change directory and install all the dependencies
