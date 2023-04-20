@@ -45,7 +45,7 @@ exports.question = (req, res) => {
       res.status(404).send({
         success: false,
         message: "mongodb server error",
-        response: err,
+        response: err
       });
     });
 };
