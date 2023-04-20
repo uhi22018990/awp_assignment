@@ -33,13 +33,21 @@ exports.question = (req, res) => {
     .then(function (response) {
       return res.status(200).send({
         success: true,
-        question: response.data.data
+        question: {
+          urltitle: response.data.data.urltitle,
+          fulltitle: response.data.data.fulltitle,
+          qtext: response.data.data.qtext,
+          answers: response.data.data.metadata
+        }
       });
     })
     .catch(err => {
       res.status(404).send({
         success: false,
-        message: "mongodb server error"
+        message: "mongodb server error",
+        url: url,
+        response: err,
+        test: 'me'
       });
     });
 };

@@ -14,7 +14,7 @@ function QuestionList({ cke }) {
     const [cookie, setCookies] = useCookies(['session']);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/api/questions/list')
+        axios.get('http://127.0.0.1:8080/api/questions/list')
         .then(function (response) {
           if (response?.data?.success) {
             setQuestions(response.data.questions)
@@ -25,7 +25,7 @@ function QuestionList({ cke }) {
         });
 
         if (cookie["username"]) {
-          axios.post('http://localhost:8080/api/stars/get', { "username": cookie['username'] }, { headers: {"x-access-token": cookie['session'] }})
+          axios.post('http://127.0.0.1:8080/api/stars/get', { "username": cookie['username'] }, { headers: {"x-access-token": cookie['session'] }})
           .then(function (response) {
             if (response?.data?.success) {
               const starsValues = response.data.stars.map((s) => s.qid)

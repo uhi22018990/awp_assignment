@@ -11,13 +11,19 @@ docker run -ti -d --name awp_frontend1 -p 3000:3000 awp_frontend
 ```
 
 ```
-docker build -t awp_backend .
-docker run -ti -d --name awp_backend1 -p 8080:8080 awp_backend
+docker build  --no-cache -t awp_backend .
+docker run -ti -d --name awp_backend1 --net awp-net -p 8080:8080 awp_backend
 ```
 
 ```
 docker build --no-cache -t awp_mongo .
-docker run -ti -d --name awp_mongo1 -p 5000:5000 awp_mongo
+docker build -t awp_mongo .
+docker run -ti -d --name awp_mongo1 --net awp-net -p 5000:5000 awp_mongo
+```
+
+Create a user-defined bridge network
+```
+docker network create awp-net
 ```
 
 
@@ -66,3 +72,8 @@ MongooseError: Operation `answers_schemas.findOne()` buffering timed out after 1
           ^
 
 ```
+
+
+## References
+
+https://www.tutorialworks.com/container-networking/

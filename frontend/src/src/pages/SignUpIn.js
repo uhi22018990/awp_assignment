@@ -45,7 +45,7 @@ function SignUpIn() {
                 </div>
                 <div className="d-grid gap-2">
                     <button type="button" onClick={() => {
-                        axios.post('http://localhost:8080/api/auth/signin', {
+                        axios.post('http://127.0.0.1:8080/api/auth/signin', {
                             username: email,
                             password: password
                           })
@@ -89,7 +89,7 @@ function SignUpIn() {
                     <button onClick={() => {
                         const check = checkEmailAndPasswords()
                         if (check) {
-                            axios.post('http://localhost:8080/api/auth/signup', {
+                            axios.post('http://127.0.0.1:8080/api/auth/signup', {
                                 "username": email1,
                                 "email": email1,
                                 "password": password1,
