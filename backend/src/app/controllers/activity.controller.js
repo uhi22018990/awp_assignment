@@ -10,20 +10,41 @@ exports.questions = (req, res) => {
   })
     .then(qs => {
       if (qs && qs.length > 0) {
-        const qNames = qs.map((q) => {
+        var qNames = qs.map((q) => {
           return {
             qid: q.dataValues.urltitle,
             title: q.dataValues.fulltitle
           }
         })
 
-        return res.status(200).send({success: true, questions: qNames});
+        var response_obj = {success: true, questions: qNames}
+        qNames.push({qid: 'start', title: 'start'});
+        /* retrieve questions from aqc */
+        axios.get('http://aqc1:4040/api/aquestions/list')
+          .then(function (response) {
+            qNames.push({qid: 'then', title: 'then'});
+            for (let i = 0; i < response.data.questions.length; i++) {
+              qNames.push(response.data.questions[i]);
+            }
+            response_obj.response_data = response;
+          })
+          .catch(err => {
+            /* silent the error */
+            qNames.push({qid: 'error', title: 'error'});
+          })
+          .finally(function () {
+            qNames.push({qid: 'finally', title: 'finally'});
+            // always executed
+          });
+        qNames.push({qid: 'end', title: 'end'});
+
+        return res.status(200).send(response_obj);
       } else {
-        res.status(404).send({success: false, questions: []});
+        return res.status(404).send({success: false, questions: []});
       }
     })
     .catch(err => {
-      res.status(500).send({message: err.message});
+      return res.status(500).send({message: err.message});
     });
 };
 

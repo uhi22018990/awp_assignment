@@ -6,19 +6,24 @@
 ## Part 1
 
 ```
-docker build -t awp_frontend .
+docker build --no-cache -t awp_frontend .
 docker run -ti -d --name awp_frontend1 -p 3000:3000 awp_frontend
 ```
 
 ```
-docker build  --no-cache -t awp_backend .
+docker build -t awp_backend .
+docker build --no-cache -t awp_backend .
 docker run -ti -d --name awp_backend1 --net awp-net -p 8080:8080 awp_backend
 ```
 
 ```
 docker build --no-cache -t awp_mongo .
-docker build -t awp_mongo .
 docker run -ti -d --name awp_mongo1 --net awp-net -p 5000:5000 awp_mongo
+```
+
+```
+docker build --no-cache -t aqc .
+docker run -ti -d --name aqc1 --net awp-net -p 4000:4000 -p 4040:4040 aqc
 ```
 
 Create a user-defined bridge network
