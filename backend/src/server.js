@@ -76,15 +76,16 @@ function initial() {
     qtype: "q",
     urltitle: "bin_search",
     fulltitle: "Binary Search",
-    qtext: "This is some question text about binary search, isn't it?",
-    metadata: JSON.stringify(
-      {'answers': [
-        {'text': 'Yes', 'correct': true},
-        {'text': 'No', 'correct': false},
-        {'text': 'Maybe', 'correct': false},
-        {'text': 'All of the above', 'correct': false}
-      ]
-    })
+    qtext: "This is some question text about binary search, isn't it?"
+    /* following lines can be removed */
+//    metadata: JSON.stringify(
+//      {'answers': [
+//        {'text': 'Yes', 'correct': true},
+//        {'text': 'No', 'correct': false},
+//        {'text': 'Maybe', 'correct': false},
+//        {'text': 'All of the above', 'correct': false}
+//      ]
+//    })
   })
 
   Questions.create({
@@ -92,15 +93,16 @@ function initial() {
     qtype: "q",
     urltitle: "avl_trees",
     fulltitle: "AVL Trees",
-    qtext: "This is some question text about AVL Trees, isn't it?",
-    metadata: JSON.stringify(
-      {'answers': [
-        {'text': 'Yes', 'correct': true},
-        {'text': 'No', 'correct': false},
-        {'text': 'Maybe', 'correct': false},
-        {'text': 'All of the above', 'correct': false}
-      ]
-    })
+    qtext: "This is some question text about AVL Trees, isn't it?"
+    /* following lines can be removed */
+//    metadata: JSON.stringify(
+//      {'answers': [
+//        {'text': 'Yes', 'correct': true},
+//        {'text': 'No', 'correct': false},
+//        {'text': 'Maybe', 'correct': false},
+//        {'text': 'All of the above', 'correct': false}
+//      ]
+//    })
   })
 
   Questions.create({
@@ -108,14 +110,15 @@ function initial() {
     qtype: "q",
     urltitle: "java_types",
     fulltitle: "Java Types",
-    qtext: "This is some question text about Java types, isn't it?",
-    metadata: JSON.stringify(
-      {'answers': [
-        {'text': 'Yes', 'correct': true},
-        {'text': 'No', 'correct': false},
-        {'text': 'Maybe', 'correct': false},
-        {'text': 'All of the above', 'correct': false}
-      ]
-    })
+    qtext: "This is some question text about Java types, isn't it?"
+    /* following lines can be removed */
+//    metadata: JSON.stringify(
+//      {'answers': [
+//        {'text': 'Yes', 'correct': true},
+//        {'text': 'No', 'correct': false},
+//        {'text': 'Maybe', 'correct': false},
+//        {'text': 'All of the above', 'correct': false}
+//      ]
+//    })
   })
 }
