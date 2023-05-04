@@ -99,11 +99,28 @@ However as visible on the screenshot below, I can see start, end but none of the
 
 ![axios failure](./images/start_end.png)
 
+### a@a.com already created
 
+To speedup the development, the user a@a.com will be inserted by the startup.js script.
 
-The insert_data.sh provided on the documentation, is using a deprecated `db.collection.insert()` method.
+```
+  User.create({
+    username: "a@a.com",
+    email: "a@a.com",
+    password: bcrypt.hashSync("a@a.com", 8)
+  });
+```
+
+### mongosh
+
+The mongodb container will populate the database by using the mongosh shell command.
+Hovever, I am not been able to find a way to escape the quote on the questions "...., isn't it?"
+
+![insert data with mongosh](./images/insert_data.sh.png)
+
+I found some issue while implementing this funtionality, because the insert_data.sh provided on the documentation, is using a deprecated `db.collection.insert()` method.
 See https://www.mongodb.com/docs/mongodb-shell/reference/compatibility/#std-label-compatibility .
-Found also while testing the Mongodb container
+See below an example of the warning message received.
 
 ```
 ...       {"text": "All of the above", "correct": false}
@@ -120,30 +137,40 @@ DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany
   }
 }
 ```
+### user-defined bridge network
 
-
-
-```
-MongooseError: Model.find() no longer accepts a callback
-    at Function.find (...mongo/src/node_modules/mongoose/lib/model.js:2041:11)
-    at ...mongo/src/server.js:33:11
-    at Layer.handle [as handle_request] (...mongo/src/node_modules/express/lib/router/layer.js:95:5)
-    at next (...mongo/src/node_modules/express/lib/router/route.js:144:13)
-    at Route.dispatch (...mongo/src/node_modules/express/lib/router/route.js:114:3)
-    at Layer.handle [as handle_request] (...mongo/src/node_modules/express/lib/router/layer.js:95:5)
-```
-
+Containers have been build with user-defined bridge network.
+This because I was not able to connect one container to another.
+After the creation of the user-defined bridge network it has been possible to connect the containers.
+For example
 
 ```
-MongooseError: Operation `answers_schemas.findOne()` buffering timed out after 10000ms
-    at Timeout.<anonymous> (/home/andrea/uhi/course/UI111014_awp/assignment/assignment/awp_assignment/mongo/src/node_modules/mongoose/lib/drivers/node-mongodb-native/collection.js:185:23)
-    at listOnTimeout (node:internal/timers:573:17)
-    at process.processTimers (node:internal/timers:514:7)
-/home/andrea/uhi/course/UI111014_awp/assignment/assignment/awp_assignment/mongo/src/node_modules/mongoose/lib/connection.js:755
-    err = new ServerSelectionError();
-          ^
-
+exports.question = (req, res) => {
+  var url = 'http://awp_mongo1:5000/questions/' + req.body.urltitle;
+  axios.get(url)
+    .then(function (response) {
+      return res.status(200).send({
+        success: true,
+        question: {
+          urltitle: response.data.data.urltitle,
+          fulltitle: response.data.data.fulltitle,
+          qtext: response.data.data.qtext,
+          answers: response.data.data.metadata
+        }
+      });
+    })
+    .catch(err => {
+      res.status(404).send({
+        success: false,
+        message: "mongodb server error",
+        response: err
+      });
+    });
+};
 ```
+On the above code the backend containers is able to access to the mongodb containers by using its name `awp_mongo1`.
+In a realistic world the FQHN (Fully qualified host name) should be used, for example mongo.mysuperapp.com.
+
 
 
 ## References
